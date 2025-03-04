@@ -1,0 +1,14 @@
+[
+  {
+    "name": "Nguyen Quang Trung",
+    "age": 20,
+    "roleName": "Student",
+    "address": "Saigon"
+  },
+  {
+    "name": "Tran Van Giau",
+    "age": 21,
+    "roleName": "Student",
+    "address": "Hanoi"
+  }
+]
