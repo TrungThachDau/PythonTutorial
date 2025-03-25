@@ -100,8 +100,6 @@ a.print_list()
 a.delete_head()
 a.print_list()
 print(a.get_node(index=0))
-
 print(a.search(data=9))
 print(a.length())
-
 
