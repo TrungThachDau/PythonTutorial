@@ -8,7 +8,27 @@ class Stack:
 
     def is_empty(self):
         return self.head is None
-
-
+    def push(self, data):
+        node = Node(data)
+        node.next = self.head
+        self.head = node
+    def pop(self):
+        if self.head is None:
+            return None
+        node = self.head
+        self.head = node.next
+        node.next = None
+        return node.data
+    def print_stack(self):
+        current = self.head
+        while current:
+            print(current.data, end=' -> ')
+            current = current.next
+        print('None')
 a = Stack()
 print(a.is_empty()) # True
+a.push(1)
+a.push(2)
+a.print_stack()
+a.pop()
+a.print_stack()
