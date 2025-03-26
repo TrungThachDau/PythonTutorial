@@ -25,10 +25,19 @@ class Stack:
             print(current.data, end=' -> ')
             current = current.next
         print('None')
-a = Stack()
-print(a.is_empty()) # True
-a.push(1)
-a.push(2)
-a.print_stack()
-a.pop()
-a.print_stack()
+    def length(self):
+        current = self.head
+        count = 0
+        while current:
+            count += 1
+            current = current.next
+        return count
+if __name__ == '__main__':
+    a = Stack()
+    print(a.is_empty()) # True
+    a.push(1)
+    a.push(2)
+    a.print_stack()
+    a.pop()
+    a.print_stack()
+    print(a.length()) # 1
