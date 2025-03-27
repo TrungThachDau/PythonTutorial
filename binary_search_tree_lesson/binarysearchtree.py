@@ -46,13 +46,17 @@ class Tree:
         else:
             self.show_node_of_level_k(current.left, k-1)
             self.show_node_of_level_k(current.right, k-1)
-    def in_order_traversal(self, root):
+    def in_order_traversal(self, root, result):
         if root:
-            self.in_order_traversal(root.left)
-            print(root.data, end=' ')
-            self.in_order_traversal(root.right)
+            self.in_order_traversal(root.left, result)
+            result.append(root.data)
+            self.in_order_traversal(root.right, result)
     def show_Tree(self):
-        self.in_order_traversal(self.root)
+        result = []
+        self.in_order_traversal(self.root, result)
+        for i in result:
+            print(i, end=' ')
+
         print()
     def search_node(self, current, data):
         if current is None:
@@ -104,15 +108,32 @@ class Tree:
         if current is None:
             return 0
         return 1 + self.length_of_tree2(current.left) + self.length_of_tree2(current.right)
-
+    def delete_node(self, current, data):
+        if current is None:
+            return current
+        if data < current.data:
+            current.left = self.delete_node(current.left, data)
+        elif data > current.data:
+            current.right = self.delete_node(current.right, data)
+        else:
+            if current.left is None:
+                return current.right
+            elif current.right is None:
+                return current.left
+            temp = self.min_of_tree(current.right)
+            current.data = temp
+            current.right = self.delete_node(current.right, temp)
+        return current
 if __name__ == '__main__':
     bst = Tree()
-    nodes = [10, 5, 15, 3, 7, 12, 18,20]
+    nodes = [10, 5, 15, 3, 7, 12, 18,20,20]
     for node in nodes:
         bst.insert_node2(bst.root, node)
     #bst.show_node_of_level_k(bst.root, 1)
     bst.show_Tree()
-    print(bst.search_node(bst.root, 19))
+    print(bst.search_node(bst.root, 20))
     print(bst.min_of_tree(bst.root))
     print(bst.length_of_tree())
     print(bst.length_of_tree2(bst.root))
+    bst.delete_node(bst.root, 20)
+    bst.show_Tree()
